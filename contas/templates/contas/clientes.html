@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="card">
+        <div class="card-body">
+            <h4>Listagem de Clientes</h4>
+            <hr>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Bairro</th>
+                        <th>Endereço</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cliente in clientes %}
+                    <tr>
+                        <td>{{ cliente.nome }} </td>
+                        <td>{{ cliente.bairro }}</td>
+                        <td>{{ cliente.endereco}}</td>
+                        <td><a class="btn btn-warning" href="{% url 'url_updateC' cliente.id %}">Editar</a><a class="btn btn-danger" href="{% url 'url_deleteC' cliente.id %}">Remover</a></td>
+                        
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+        
+        
+       
+    
+<a class="btn btn-success" href="{% url 'url_addclientes' %}">Novo</a>
+<a class="" href="{% url 'url_pdf' %}"> Gerar PDF</a>
+
+
+{% endblock %}

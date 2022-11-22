@@ -1,20 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h2>Listagem</h2>
+{% extends 'base.html' %}
 
-    
-        {% for transacao in transacoes %}
-        <li>{{transacao.descricao}} - {{ transacao.valor}}<a href="{% url 'url_update' transacao.id %}">Editar</a></li> 
-        {% endfor %}
-    
-<a href="{% url 'url_nova' %}">Novo</a>
+{% block content %}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Valor</th>
+                        <th>Descrição</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for data in data %}
+                    <tr>
+                        <td>{{ data.descricao }} </td>
+                        <td>{{ data.valor }}</td>
+                        <td>{{ data.descricao}}</td>
+                        <td><a class="btn btn-warning" href="{% url 'url_update' data.id %}">Editar</a>
+                            <a class="btn btn-danger" href="{% url 'url_delete' data.id %}">Remover</a></td>
+                        
+                    </tr>
 
-</body>
-</html>
+                    
+                    {% endfor %}
+                    <form class"form-inline">
+                        <input class="form-control me-2" type="search" name="q" placeholder="Busque por uma Data">
+                        <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+                    </form>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+        
+        
+       
+    
+<a class="btn btn-success" href="{% url 'url_nova' %}">Novo</a>
+<a class="" href="{% url 'url_pdf' %}"> Gerar PDF</a>
+
+
+{% endblock %}
